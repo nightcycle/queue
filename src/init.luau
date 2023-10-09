@@ -12,6 +12,7 @@ export type Queue<T> = {
 	new: () -> Queue<T>,
 	IsEmpty: (self: Queue<T>) -> boolean,
 	HasItem: (self: Queue<T>, value: T) -> boolean,
+	RemoveItem: (self: Queue<T>, value: T) -> (),
 	Sort: (self: Queue<T>) -> (),
 	Add: (self: Queue<T>, value: T, priority: number?) -> (),
 	Get: (self: Queue<T>) -> T?,
@@ -42,6 +43,14 @@ end
 
 function Queue:HasItem(value: unknown): boolean
 	return self._Registry[value] ~= nil
+end
+
+function Queue:RemoveItem(value: unknown): ()
+	local index = table.find(self._Queue, value)
+	if index then
+		table.remove(self._Queue, index)
+		self._Registry[value] = nil
+	end
 end
 
 function Queue:Sort()
