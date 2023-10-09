@@ -11,8 +11,8 @@ export type Queue<T> = {
 	IsSorted: boolean,
 	new: () -> Queue<T>,
 	IsEmpty: (self: Queue<T>) -> boolean,
-	HasItem: (self: Queue<T>, value: T) -> boolean,
-	RemoveItem: (self: Queue<T>, value: T) -> (),
+	Has: (self: Queue<T>, value: T) -> boolean,
+	Remove: (self: Queue<T>, value: T) -> (),
 	Sort: (self: Queue<T>) -> (),
 	Add: (self: Queue<T>, value: T, priority: number?) -> (),
 	Get: (self: Queue<T>) -> T?,
@@ -41,11 +41,11 @@ function Queue:IsEmpty(): boolean
 	return #self._Queue == 0
 end
 
-function Queue:HasItem(value: unknown): boolean
+function Queue:Has(value: unknown): boolean
 	return self._Registry[value] ~= nil
 end
 
-function Queue:RemoveItem(value: unknown): ()
+function Queue:Remove(value: unknown): ()
 	local index = table.find(self._Queue, value)
 	if index then
 		table.remove(self._Queue, index)
@@ -65,7 +65,7 @@ end
 
 -- Add a value to the queue
 function Queue:Add(value: unknown, priority: number?)
-	if self:HasItem(value) then return end
+	if self:Has(value) then return end
 	if not self.IsSorted then warn(`priority passed to unsorted queue, enabled sorting with queue.IsSorted = true`) end
 	priority = (priority or 0) :: number
 	assert(priority ~= nil)
