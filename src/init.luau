@@ -25,7 +25,7 @@ export type Queue<T> = {
 -- Class
 
 
-local Queue = {} :: Queue<unknown>
+local Queue = {} :: Queue<any>
 Queue.__index = Queue
 
 function Queue.new()
