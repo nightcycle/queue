@@ -66,7 +66,7 @@ end
 -- Add a value to the queue
 function Queue:Add(value: unknown, priority: number?)
 	if self:Has(value) then return end
-	if not self.IsSorted then warn(`priority passed to unsorted queue, enabled sorting with queue.IsSorted = true`) end
+	if priority and not self.IsSorted then warn(`priority passed to unsorted queue, enabled sorting with queue.IsSorted = true`) end
 	priority = (priority or 0) :: number
 	assert(priority ~= nil)
 
