@@ -31,7 +31,7 @@ Queue.__index = Queue
 
 function Queue.new()
 	local self: Queue<unknown> = setmetatable({}, Queue) :: any
-	self.IsSorted = true
+	self.IsSorted = false
 	self._Registry = {}
 	self._Queue = {}
 	return self
@@ -66,7 +66,7 @@ end
 -- Add a value to the queue
 function Queue:Add(value: unknown, priority: number?)
 	if self:Has(value) then return end
-	if priority and not self.IsSorted then warn(`priority passed to unsorted queue, enabled sorting with queue.IsSorted = true`) end
+	if priority and not self.IsSorted then error(`priority passed to unsorted queue, enabled sorting with queue.IsSorted = true`) end
 	priority = (priority or 0) :: number
 	assert(priority ~= nil)
 
