@@ -14,6 +14,8 @@ export type Queue<T> = {
 	Has: (self: Queue<T>, value: T) -> boolean,
 	Remove: (self: Queue<T>, value: T) -> (),
 	Sort: (self: Queue<T>) -> (),
+	CheckPosition: (self: Queue<T>, value: T) -> number?,
+	CheckPriority: (self: Queue<T>, value: T) -> number?,
 	Add: (self: Queue<T>, value: T, priority: number?) -> (),
 	Get: (self: Queue<T>) -> T?,
 	Step: (self: Queue<T>, duration: number, processor: (value: T) -> ()) -> (),
@@ -61,6 +63,14 @@ function Queue:Sort()
 		assert(aP and bP)
 		return aP > bP
 	end)
+end
+
+function Queue:CheckPosition(value: unknown): number?
+	return table.find(self._Queue, value)
+end
+
+function Queue:CheckPriority(value: unknown): number?
+	return self._Registry[value]
 end
 
 -- Add a value to the queue
