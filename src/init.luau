@@ -18,6 +18,7 @@ export type Queue<T> = {
 	CheckPriority: (self: Queue<T>, value: T) -> number?,
 	Add: (self: Queue<T>, value: T, priority: number?) -> (),
 	Get: (self: Queue<T>) -> T?,
+	Peek: (self: Queue<T>) -> T?,
 	Step: (self: Queue<T>, duration: number, processor: (value: T) -> ()) -> (),
 }
 
@@ -126,6 +127,11 @@ function Queue:Get(): unknown?
 	self._Registry[value] = nil
 
 	return value
+end
+
+-- Check the value next up in the queue without removing it
+function Queue:Peek(): unknown?
+	return self._Queue[1]
 end
 
 -- Run through as many items as you can in the alotted time
