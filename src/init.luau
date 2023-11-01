@@ -18,6 +18,7 @@ export type Queue<T> = {
 	CheckPriority: (self: Queue<T>, value: T) -> number?,
 	Add: (self: Queue<T>, value: T, priority: number?) -> (),
 	Get: (self: Queue<T>) -> T?,
+	GetLength: (self: Queue<T>) -> number,
 	Peek: (self: Queue<T>) -> T?,
 	Step: (self: Queue<T>, duration: number, processor: (value: T) -> ()) -> (),
 }
@@ -46,6 +47,10 @@ end
 
 function Queue:Has(value: unknown): boolean
 	return self._Registry[value] ~= nil
+end
+
+function Queue:GetLength(): number
+	return #self._Queue
 end
 
 function Queue:Remove(value: unknown): ()
