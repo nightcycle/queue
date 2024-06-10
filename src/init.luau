@@ -1,4 +1,5 @@
 --!strict
+--!native
 -- based on this originally https://create.roblox.com/docs/luau/queues
 -- Services
 -- Packages
