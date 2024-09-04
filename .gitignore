@@ -1,18 +1,14 @@
 
 
 # Directories
-out/**
-Packages/**
-types
-lints
-tests/lsp/**
-tests/selene/**
+Packages
+node_modules
+build
+serve
 
 # Files
 sourcemap.json
 wally.lock
-package-lock.json
-keys.txt
 
 # File types
 *.lock

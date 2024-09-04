@@ -1,15 +1,11 @@
 {
-	"name": "test",
+	"name": "queue-dev",
 	"tree": {
-	  "$className": "DataModel",
-	  "ReplicatedStorage": {
-	    "$className": "ReplicatedStorage",
-	    "Packages": {
-		 "$path": "Packages",
-		 "package": {
-		   "$path": "src"
-		 }
+	    "$className": "DataModel",
+	    "ReplicatedStorage": {
+		   "table-util": {
+			  "$path": "src"
+		   }
 	    }
-	  }
 	}
-   }
+ }
