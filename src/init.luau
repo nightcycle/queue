@@ -7,8 +7,8 @@
 -- Types
 export type Queue<T> = {
 	__index: Queue<T>,
-	_Queue: {[number]: T},
-	_Registry: {[T]: number?},
+	_Queue: { [number]: T },
+	_Registry: { [T]: number? },
 	IsSorted: boolean,
 	new: () -> Queue<T>,
 	IsEmpty: (self: Queue<T>) -> boolean,
@@ -29,7 +29,6 @@ export type Queue<T> = {
 -- References
 -- Private Functions
 -- Class
-
 
 local Queue = {} :: Queue<any>
 Queue.__index = Queue
@@ -82,8 +81,12 @@ end
 
 -- Add a value to the queue
 function Queue:Add(value: unknown, priority: number?)
-	if self:Has(value) then return end
-	if priority and not self.IsSorted then error(`priority passed to unsorted queue, enabled sorting with queue.IsSorted = true`) end
+	if self:Has(value) then
+		return
+	end
+	if priority and not self.IsSorted then
+		error(`priority passed to unsorted queue, enabled sorting with queue.IsSorted = true`)
+	end
 	priority = (priority or 0) :: number
 	assert(priority ~= nil)
 
@@ -93,7 +96,7 @@ function Queue:Add(value: unknown, priority: number?)
 
 	if self.IsSorted then
 		for i, v in ipairs(self._Queue) do
-			local nV = self._Queue[i+1]
+			local nV = self._Queue[i + 1]
 			if nV then
 				local nP = self._Registry[nV]
 				if nP then
